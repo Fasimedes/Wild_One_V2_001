@@ -6,4 +6,47 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\Locations\FarmFields.png" />
+    <None Remove="Images\Locations\Farmhouse.png" />
+    <None Remove="Images\Locations\HerbalistsGarden.png" />
+    <None Remove="Images\Locations\HerbalistsHut.png" />
+    <None Remove="Images\Locations\Home.png" />
+    <None Remove="Images\Locations\SpiderForest.png" />
+    <None Remove="Images\Locations\TownGate.png" />
+    <None Remove="Images\Locations\TownSquare.png" />
+    <None Remove="Images\Locations\Trader.png" />
+    <None Remove="Images\Monsters\Giant Spider.png" />
+    <None Remove="Images\Monsters\Giant Spider1.png" />
+    <None Remove="Images\Monsters\GiantSpider.png" />
+    <None Remove="Images\Monsters\Rat.png" />
+    <None Remove="Images\Monsters\Rat1.png" />
+    <None Remove="Images\Monsters\Snake.png" />
+    <None Remove="Images\Monsters\Snake1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\Locations\Farmhouse.png" />
+    <Content Include="Images\Locations\HerbalistsGarden.png" />
+    <Content Include="Images\Locations\HerbalistsHut.png" />
+    <Content Include="Images\Locations\Home.png" />
+    <Content Include="Images\Locations\SpiderForest.png" />
+    <Content Include="Images\Locations\TownGate.png" />
+    <Content Include="Images\Locations\TownSquare.png" />
+    <Content Include="Images\Locations\Trader.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Locations\FarmFields.png" />
+    <Content Include="Images\Monsters\Giant Spider.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Monsters\Rat.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Monsters\Snake.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
