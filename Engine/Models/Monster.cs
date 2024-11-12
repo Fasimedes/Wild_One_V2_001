@@ -9,23 +9,20 @@ namespace Engine.Models
 {
     public class Monster : LivingEntity
     {
-        public string ImageName { get; set; }
-        public int MinimumDamage { get; set; }
-        public int MaximumDamage { get; set; }
-        public int RewardExperiencePoints { get; private set; }
+        public string ImageName { get; }
+        public int MinimumDamage { get; }
+        public int MaximumDamage { get; }
+        public int RewardExperiencePoints { get; }
         public Monster(string name, string imageName,
-                       int maximumHitPoints, int hitPoints,
+                       int maximumHitPoints, int currentHitPoints,
                        int minimumDamage, int maxmumDamage,
-                       int rewardExperiencePoints, int rewardGold)
+                       int rewardExperiencePoints, int gold) :
+            base(name, maximumHitPoints, currentHitPoints, gold)
         {
-            Name = name;
-            ImageName = $"/Engine;component/Images/Monsters/{imageName}";
-            MaximumHitPoints = maximumHitPoints;
-            CurrentHitPoints = hitPoints;
+            ImageName = $"E:/Vše možné/C#, Sql courses/C#/Semestralka/Wild_One_V2_001/Engine/Images/Monsters/{imageName}";
             MinimumDamage = minimumDamage;
             MaximumDamage = maxmumDamage;
             RewardExperiencePoints = rewardExperiencePoints;
-            Gold = rewardGold;
         }
     }
 }

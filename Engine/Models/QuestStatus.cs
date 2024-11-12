@@ -6,20 +6,23 @@ using System.Threading.Tasks;
 
 namespace Engine.Models
 {
-    // Represents the status of a quest for a player
-    public class QuestStatus
+    public class QuestStatus : BaseNotificationClass
     {
-        // The quest assigned to the player
-        public Quest PlayerQuest { get; set; }
-
-        // Indicates if the quest has been completed
-        public bool IsCompleted { get; set; }
-
-        // Constructor initializing the player's quest and setting completion to false
+        private bool _isCompleted;
+        public Quest PlayerQuest { get; }
+        public bool IsCompleted
+        {
+            get { return _isCompleted; }
+            set
+            {
+                _isCompleted = value;
+                OnPropertyChanged();
+            }
+        }
         public QuestStatus(Quest quest)
         {
-            PlayerQuest = quest;   // Assign the given quest to the player
-            IsCompleted = false;   // Initialize the quest as incomplete
+            PlayerQuest = quest;
+            IsCompleted = false;
         }
     }
 }

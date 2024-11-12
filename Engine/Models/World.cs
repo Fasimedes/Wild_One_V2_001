@@ -8,30 +8,23 @@ namespace Engine.Models
 {
     public class World
     {
-        private List<Location> _locations = new List<Location>(); // A list to store locations in the world
-
-        internal void AddLocation(int xCoordinate, int yCoordinate, string name, string description, string imageName) // Creates a new location
+        private readonly List<Location> _locations = new List<Location>();
+        internal void AddLocation(int xCoordinate, int yCoordinate,
+                                  string name, string description, string imageName)
         {
-            Location loc = new Location(); // Instantiate a new Location object
-            loc.XCoordinate = xCoordinate; // Set the X coordinate of the location
-            loc.YCoordinate = yCoordinate; // Set the Y coordinate of the location
-            loc.Name = name; // Set the name of the location
-            loc.Description = description; // Set the description of the location
-            loc.ImageName = $"E:\\Vše možné\\C#, Sql courses\\C#\\Semestralka\\Wild_One_V2_001\\Engine\\Images\\Locations\\{imageName}"; // Set the image reference for the location
-
-            _locations.Add(loc); // Add the location to the list
+            _locations.Add(new Location(xCoordinate, yCoordinate, name, description,
+                                        $"E:/Vše možné/C#, Sql courses/C#/Semestralka/Wild_One_V2_001/Engine/Images/Locations/{imageName}"));
         }
-
-        public Location LocationAt(int xCoordinate, int yCoordinate) // Checks the current location
+        public Location LocationAt(int xCoordinate, int yCoordinate)
         {
-            foreach (Location loc in _locations) // Iterate through all locations
+            foreach (Location loc in _locations)
             {
-                if (loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate) // Check if coordinates match
+                if (loc.XCoordinate == xCoordinate && loc.YCoordinate == yCoordinate)
                 {
-                    return loc; // Return the found location
+                    return loc;
                 }
             }
-            return null; // Return null if no matching location is found
+            return null;
         }
     }
 }
