@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using Engine.EventArgs;
+﻿using Engine.EventArgs;
+using Engine.Factories;
 using Engine.Models;
-using Engine.Models.Factories;
-using System;
+
 namespace Engine.ViewModels
 {
     public class GameSession : BaseNotificationClass
@@ -99,7 +98,7 @@ namespace Engine.ViewModels
         public GameSession()
         {
             CurrentPlayer = new Player("Scott", "Fighter", 0, 10, 10, 1000000);
-            if (!CurrentPlayer.Weapons.Any())
+            if (!CurrentPlayer.Inventory.Weapons.Any())
             {
                 CurrentPlayer.AddItemToInventory(ItemFactory.CreateGameItem(1001));
             }
@@ -148,7 +147,7 @@ namespace Engine.ViewModels
                                                              !q.IsCompleted);
                 if (questToComplete != null)
                 {
-                    if (CurrentPlayer.HasAllTheseItems(quest.ItemsToComplete))
+                    if (CurrentPlayer.Inventory.HasAllTheseItems(quest.ItemsToComplete))
                     {
                         CurrentPlayer.RemoveItemsFromInventory(quest.ItemsToComplete);
                         RaiseMessage("");
@@ -201,6 +200,10 @@ namespace Engine.ViewModels
         }
         public void AttackCurrentMonster()
         {
+            if (CurrentMonster == null)
+            {
+                return;
+            }
             if (CurrentPlayer.CurrentWeapon == null)
             {
                 RaiseMessage("You must select a weapon, to attack.");
@@ -219,11 +222,14 @@ namespace Engine.ViewModels
         }
         public void UseCurrentConsumable()
         {
-            CurrentPlayer.UseCurrentConsumable();
+            if (CurrentPlayer.CurrentConsumable != null)
+            {
+                CurrentPlayer.UseCurrentConsumable();
+            }
         }
         public void CraftItemUsing(Recipe recipe)
         {
-            if (CurrentPlayer.HasAllTheseItems(recipe.Ingredients))
+            if (CurrentPlayer.Inventory.HasAllTheseItems(recipe.Ingredients))
             {
                 CurrentPlayer.RemoveItemsFromInventory(recipe.Ingredients);
                 foreach (ItemQuantity itemQuantity in recipe.OutputItems)
@@ -268,7 +274,7 @@ namespace Engine.ViewModels
             CurrentPlayer.AddExperience(CurrentMonster.RewardExperiencePoints);
             RaiseMessage($"You receive {CurrentMonster.Gold} gold.");
             CurrentPlayer.ReceiveGold(CurrentMonster.Gold);
-            foreach (GameItem gameItem in CurrentMonster.Inventory)
+            foreach (GameItem gameItem in CurrentMonster.Inventory.Items)
             {
                 RaiseMessage($"You receive one {gameItem.Name}.");
                 CurrentPlayer.AddItemToInventory(gameItem);
