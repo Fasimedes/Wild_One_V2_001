@@ -7,77 +7,43 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Engine.Models
 {
-    public abstract class LivingEntity : BaseNotificationClass
+    public abstract class LivingEntity : INotifyPropertyChanged
     {
         #region Properties
         private string _name;
-        private int _currentHitPoints;
-        private int _maximumHitPoints;
-        private int _gold;
-        private int _level;
         private GameItem _currentWeapon;
         private GameItem _currentConsumable;
-        private Inventory _inventory;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<PlayerAttribute> Attributes { get; } =
+            new ObservableCollection<PlayerAttribute>();
         public string Name
         {
-            get { return _name; }
+            get => _name;
             private set
             {
                 _name = value;
-                OnPropertyChanged();
             }
         }
-        public int CurrentHitPoints
-        {
-            get { return _currentHitPoints; }
-            private set
-            {
-                _currentHitPoints = value;
-                OnPropertyChanged();
-            }
-        }
-        public int MaximumHitPoints
-        {
-            get { return _maximumHitPoints; }
-            protected set
-            {
-                _maximumHitPoints = value;
-                OnPropertyChanged();
-            }
-        }
-        public int Gold
-        {
-            get { return _gold; }
-            private set
-            {
-                _gold = value;
-                OnPropertyChanged();
-            }
-        }
-        public int Level
-        {
-            get { return _level; }
-            protected set
-            {
-                _level = value;
-                OnPropertyChanged();
-            }
-        }
-        public Inventory Inventory
-        {
-            get => _inventory;
-            private set
-            {
-                _inventory = value;
-                OnPropertyChanged();
-            }
-        }
+        public int CurrentHitPoints { get; private set; }
+
+        public int MaximumHitPoints { get; protected set; }
+
+        public int Gold { get; private set; }
+
+        public int Level { get; protected set; }
+
+        public Inventory Inventory { get; private set; }
+
         public GameItem CurrentWeapon
         {
-            get { return _currentWeapon; }
+            get => _currentWeapon;
             set
             {
                 if (_currentWeapon != null)
@@ -89,7 +55,6 @@ namespace Engine.Models
                 {
                     _currentWeapon.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
-                OnPropertyChanged();
             }
         }
         public GameItem CurrentConsumable
@@ -106,21 +71,27 @@ namespace Engine.Models
                 {
                     _currentConsumable.Action.OnActionPerformed += RaiseActionPerformedEvent;
                 }
-                OnPropertyChanged();
             }
         }
-        public bool IsDead => CurrentHitPoints <= 0;
+        [JsonIgnore]
+        public bool IsAlive => CurrentHitPoints > 0;
+        [JsonIgnore]
+        public bool IsDead => !IsAlive;
         #endregion
         public event EventHandler<string> OnActionPerformed;
         public event EventHandler OnKilled;
         protected LivingEntity(string name, int maximumHitPoints, int currentHitPoints,
-                               int gold, int level = 1)
+                               IEnumerable<PlayerAttribute> attributes, int gold, int level = 1)
         {
             Name = name;
             MaximumHitPoints = maximumHitPoints;
             CurrentHitPoints = currentHitPoints;
             Gold = gold;
             Level = level;
+            foreach (PlayerAttribute attribute in attributes)
+            {
+                Attributes.Add(attribute);
+            }
             Inventory = new Inventory();
         }
         public void UseCurrentWeaponOn(LivingEntity target)

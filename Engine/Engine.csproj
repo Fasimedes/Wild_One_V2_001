@@ -7,10 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="GameData\GameDetails.json" />
     <None Remove="Images\Monsters\Giant Spider1.png" />
-    <None Remove="Images\Monsters\GiantSpider.png" />
     <None Remove="Images\Monsters\Rat1.png" />
     <None Remove="Images\Monsters\Snake1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="GameData\GameDetails.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="D20Tek.Common.Net47" Version="3.3.5" />
+    <PackageReference Include="D20Tek.DiceNotation.Net47" Version="3.3.2" />
+    <PackageReference Include="Fody" Version="6.9.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SOSCSRPG.Models\SOSCSRPG.Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -59,7 +80,7 @@
     <None Update="Images\Locations\Trader.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Images\Monsters\Giant Spider.png">
+    <None Update="Images\Monsters\GiantSpider.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Images\Monsters\Rat.png">

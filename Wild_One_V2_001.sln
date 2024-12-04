@@ -7,7 +7,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFUI", "Wild_One_V2_001\WP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engine", "Engine\Engine.csproj", "{2B7AB39D-E683-47A5-9FAC-01B5D1185462}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEngine", "TestEngine\TestEngine.csproj", "{5838CAAA-0515-4260-9CA0-C7209A0CF3ED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{BB588760-6931-4F91-80F9-16F8B88BDA24}"
+	ProjectSection(SolutionItems) = preProject
+		LicensesConsumed.md = LicensesConsumed.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOSCSRPG.Models", "SOSCSRPG.Models\SOSCSRPG.Models.csproj", "{ED6702DE-3560-4DC6-9A2D-A95A66D3E42A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOSCSRPG.Services", "SOSCSRPG.Services\SOSCSRPG.Services.csproj", "{3DCF6EA9-682C-427E-A478-DE369950EA51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOSCSRPG.ViewModels", "SOSCSRPG.ViewModels\SOSCSRPG.ViewModels.csproj", "{F3B79DFC-B97E-4CC9-8140-D56475FC2E72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +32,18 @@ Global
 		{2B7AB39D-E683-47A5-9FAC-01B5D1185462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B7AB39D-E683-47A5-9FAC-01B5D1185462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B7AB39D-E683-47A5-9FAC-01B5D1185462}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5838CAAA-0515-4260-9CA0-C7209A0CF3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5838CAAA-0515-4260-9CA0-C7209A0CF3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5838CAAA-0515-4260-9CA0-C7209A0CF3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5838CAAA-0515-4260-9CA0-C7209A0CF3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED6702DE-3560-4DC6-9A2D-A95A66D3E42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED6702DE-3560-4DC6-9A2D-A95A66D3E42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED6702DE-3560-4DC6-9A2D-A95A66D3E42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED6702DE-3560-4DC6-9A2D-A95A66D3E42A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DCF6EA9-682C-427E-A478-DE369950EA51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DCF6EA9-682C-427E-A478-DE369950EA51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DCF6EA9-682C-427E-A478-DE369950EA51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DCF6EA9-682C-427E-A478-DE369950EA51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B79DFC-B97E-4CC9-8140-D56475FC2E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B79DFC-B97E-4CC9-8140-D56475FC2E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B79DFC-B97E-4CC9-8140-D56475FC2E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B79DFC-B97E-4CC9-8140-D56475FC2E72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
