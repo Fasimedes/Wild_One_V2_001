@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using D20Tek.DiceNotation;
 using D20Tek.DiceNotation.DieRoller;
-using System;
-
-namespace Engine.Services
+namespace SOSCSRPG.Core
 {
     public class DiceService : IDiceService
     {
-        private static readonly IDiceService _instance = new DiceService();
+        private static readonly IDiceService s_instance = new DiceService();
         /// <summary>
-        /// Make constructor private to implement singletone pattern.
+        /// Make constructor private to implement singleton pattern.
         /// </summary>
         private DiceService()
         {
@@ -21,7 +15,7 @@ namespace Engine.Services
         /// <summary>
         /// Static singleton property
         /// </summary>
-        public static IDiceService Instance => _instance;
+        public static IDiceService Instance => s_instance;
         //--- IDiceService implementation
         public IDice Dice { get; } = new Dice();
         public IDieRoller DieRoller { get; private set; } = new RandomDieRoller();

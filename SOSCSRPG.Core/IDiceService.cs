@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using D20Tek.DiceNotation;
+﻿using D20Tek.DiceNotation;
 using D20Tek.DiceNotation.DieRoller;
-
-namespace Engine.Services
+namespace SOSCSRPG.Core
 {
     public interface IDiceService
     {

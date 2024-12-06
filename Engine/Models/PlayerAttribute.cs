@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Engine.Services;
-using System.ComponentModel;
-
-
+﻿using System.ComponentModel;
+using SOSCSRPG.Core;
 namespace Engine.Models
 {
     public class PlayerAttribute : INotifyPropertyChanged
@@ -16,10 +9,7 @@ namespace Engine.Models
         public string DiceNotation { get; }
         public int BaseValue { get; set; }
         public int ModifiedValue { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
-
-
         // Constructor that will use DiceService to create a BaseValue.
         // The constructor this calls will put that same value into BaseValue and ModifiedValue
         public PlayerAttribute(string key, string displayName, string diceNotation)
