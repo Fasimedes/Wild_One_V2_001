@@ -1,4 +1,4 @@
-﻿using Engine.EventArgs;
+﻿using SOSCSRPG.Models.EventArgs;
 using Engine.Factories;
 using Engine.Services;
 using System;

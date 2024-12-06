@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Engine.EventArgs;
+using SOSCSRPG.Models.EventArgs;
 using Engine.Factories;
 using Engine.Services;
 

@@ -1,23 +1,17 @@
-﻿using Engine.Factories;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using Engine.Factories;
 using Engine.Models;
 using Engine.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 
-
-namespace Engine.ViewModels
+namespace SOSCSRPG.ViewModels
 {
     public class CharacterCreationViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public GameDetails GameDetails { get; }
         public Race SelectedRace { get; init; }
-
         public string Name { get; init; }
         public ObservableCollection<PlayerAttribute> PlayerAttributes { get; } =
             new ObservableCollection<PlayerAttribute>();
