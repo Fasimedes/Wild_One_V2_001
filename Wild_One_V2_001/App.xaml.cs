@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Threading;
-using SOSCSRPG.Services;
+using SOSCSRPG.Core;
 
 namespace WPFUI
 {
@@ -16,18 +16,3 @@ namespace WPFUI
         }
     }
 }
-//using System;
-//using System.Windows;
-
-//namespace Wild_One_V2_001
-//{
-//    public partial class App : Application
-//    {
-//        private void App_OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
-//        {
-//            // Handle the exception here
-//            MessageBox.Show(e.Exception.Message, "Unhandled Exception");
-//            e.Handled = true;
-//        }
-//    }
-//}

@@ -1,46 +1,24 @@
-﻿using SOSCSRPG.Models.EventArgs;
-using Engine.Factories;
-using Engine.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using System.ComponentModel;
-
+using Newtonsoft.Json;
 namespace Engine.Models
 {
     public abstract class LivingEntity : INotifyPropertyChanged
     {
         #region Properties
-        private string _name;
         private GameItem _currentWeapon;
         private GameItem _currentConsumable;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         public ObservableCollection<PlayerAttribute> Attributes { get; } =
             new ObservableCollection<PlayerAttribute>();
-        public string Name
-        {
-            get => _name;
-            private set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; }
         public int CurrentHitPoints { get; private set; }
-
         public int MaximumHitPoints { get; protected set; }
-
         public int Gold { get; private set; }
-
         public int Level { get; protected set; }
-
         public Inventory Inventory { get; private set; }
-
         public GameItem CurrentWeapon
         {
             get => _currentWeapon;

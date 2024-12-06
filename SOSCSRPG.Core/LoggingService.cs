@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-namespace SOSCSRPG.Services
+namespace SOSCSRPG.Core
 {
     public static class LoggingService
     {
