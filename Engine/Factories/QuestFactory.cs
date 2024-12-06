@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Engine.Models;
 using Engine.Shared;
-
 namespace Engine.Factories
 {
     internal static class QuestFactory
@@ -35,13 +32,13 @@ namespace Engine.Factories
                 List<ItemQuantity> rewardItems = new List<ItemQuantity>();
                 foreach (XmlNode childNode in node.SelectNodes("./ItemsToComplete/Item"))
                 {
-                    itemsToComplete.Add(new ItemQuantity(childNode.AttributeAsInt("ID"),
-                                                         childNode.AttributeAsInt("Quantity")));
+                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    itemsToComplete.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
                 }
                 foreach (XmlNode childNode in node.SelectNodes("./RewardItems/Item"))
                 {
-                    rewardItems.Add(new ItemQuantity(childNode.AttributeAsInt("ID"),
-                                                     childNode.AttributeAsInt("Quantity")));
+                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    rewardItems.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
                 }
                 _quests.Add(new Quest(node.AttributeAsInt("ID"),
                                       node.SelectSingleNode("./Name")?.InnerText ?? "",

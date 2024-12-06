@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Engine.Services
+using System.IO;
+namespace SOSCSRPG.Services
 {
     public static class LoggingService
     {

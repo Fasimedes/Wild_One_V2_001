@@ -1,14 +1,9 @@
-﻿using Engine.Services;
-using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Threading;
+using SOSCSRPG.Services;
 
-namespace Wild_One_V2_001
+namespace WPFUI
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -21,3 +16,18 @@ namespace Wild_One_V2_001
         }
     }
 }
+//using System;
+//using System.Windows;
+
+//namespace Wild_One_V2_001
+//{
+//    public partial class App : Application
+//    {
+//        private void App_OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+//        {
+//            // Handle the exception here
+//            MessageBox.Show(e.Exception.Message, "Unhandled Exception");
+//            e.Handled = true;
+//        }
+//    }
+//}

@@ -1,28 +1,22 @@
-﻿using SOSCSRPG.Models.EventArgs;
+﻿using System.ComponentModel;
+using System.Linq;
 using Engine.Factories;
 using Engine.Models;
 using Engine.Services;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
-
-
 namespace Engine.ViewModels
 {
     public class GameSession : INotifyPropertyChanged
     {
         private readonly MessageBroker _messageBroker = MessageBroker.GetInstance();
-        public event PropertyChangedEventHandler PropertyChanged;
         #region Properties
-
         private Player _currentPlayer;
         private Location _currentLocation;
         private Battle _currentBattle;
         private Monster _currentMonster;
-
+        public event PropertyChangedEventHandler PropertyChanged;
         [JsonIgnore]
         public GameDetails GameDetails { get; private set; }
-
         [JsonIgnore]
         public World CurrentWorld { get; }
         public Player CurrentPlayer
@@ -77,7 +71,6 @@ namespace Engine.ViewModels
         }
         [JsonIgnore]
         public Trader CurrentTrader { get; private set; }
-
         [JsonIgnore]
         public bool HasLocationToNorth =>
             CurrentWorld.LocationAt(CurrentLocation.XCoordinate, CurrentLocation.YCoordinate + 1) != null;
@@ -236,7 +229,7 @@ namespace Engine.ViewModels
                 foreach (ItemQuantity itemQuantity in recipe.Ingredients)
                 {
                     _messageBroker
-                        .RaiseMessage($"  {itemQuantity.Quantity} {ItemFactory.ItemName(itemQuantity.ItemID)}");
+                        .RaiseMessage($"  {itemQuantity.QuantityItemDescription}");
                 }
             }
         }

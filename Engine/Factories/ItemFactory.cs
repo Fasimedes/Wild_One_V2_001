@@ -1,17 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Xml;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using Engine.Models;
+using System.Xml;
 using Engine.Actions;
-using System.Diagnostics;
-using System.Xml.Linq;
+using Engine.Models;
 using Engine.Shared;
-
 namespace Engine.Factories
 {
     public static class ItemFactory
@@ -36,10 +29,6 @@ namespace Engine.Factories
         public static GameItem CreateGameItem(int itemTypeID)
         {
             return _standardGameItems.FirstOrDefault(item => item.ItemTypeID == itemTypeID)?.Clone();
-        }
-        public static string ItemName(int itemTypeID)
-        {
-            return _standardGameItems.FirstOrDefault(i => i.ItemTypeID == itemTypeID)?.Name ?? "";
         }
         private static void LoadItemsFromNodes(XmlNodeList nodes)
         {
