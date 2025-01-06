@@ -11,6 +11,7 @@
         MinHeight="125"
         MinWidth="250"
         SizeToContent="WidthAndHeight">
+    <!-- Main grid layout for the window -->
     <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,14 +22,20 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
+        <!-- Label to display the message -->
         <Label Grid.Row="0" Grid.Column="0"
                Grid.ColumnSpan="2"
                x:Name="Message"/>
+        
+        <!-- No button -->
         <Button Grid.Row="2" Grid.Column="0"
                 Content="No"
                 Width="75"
                 HorizontalAlignment="Left"
                 Click="No_OnClick"/>
+        
+        <!-- Yes button -->
         <Button Grid.Row="2" Grid.Column="1"
                 Content="Yes"
                 Width="75"

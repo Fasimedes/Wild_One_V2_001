@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         FontSize="11pt"
         Title="{Binding GameDetails.Title}" Height="400" Width="400">
+    <!-- Main grid layout for the window -->
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -21,12 +22,16 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <!-- Title label -->
         <Label Grid.Row="0" Grid.Column="0"
                Grid.ColumnSpan="2"
                FontWeight="Bold"
                HorizontalAlignment="Center"
                Content="Create a new character"/>
+
         <!-- Character creation controls -->
+        <!-- Name label and textbox -->
         <Label Grid.Row="1" Grid.Column="0"
                FontWeight="Bold"
                Content="Name:"/>
@@ -34,6 +39,8 @@
                  Width="250"
                  HorizontalAlignment="Left"
                  Text="{Binding Name}"/>
+
+        <!-- Race label and combobox -->
         <Label Grid.Row="2" Grid.Column="0"
                FontWeight="Bold"
                Content="Race:"
@@ -46,6 +53,8 @@
                   SelectedItem="{Binding SelectedRace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="Race_OnSelectionChanged"
                   Visibility="{Binding HasRaces, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <!-- DataGrid for player attributes -->
         <DataGrid Grid.Row="3" Grid.Column="0"
                   Grid.ColumnSpan="2"
                   ItemsSource="{Binding PlayerAttributes}"
@@ -65,8 +74,10 @@
                                                  Converter={StaticResource BooleanToVisibilityConverter}}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <!-- Buttons for rolling a new player and using the current player -->
         <Grid Grid.Row="4" Grid.Column="0"
-                  Grid.ColumnSpan="2">
+              Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
