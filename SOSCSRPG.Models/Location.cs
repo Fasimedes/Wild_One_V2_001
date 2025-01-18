@@ -36,6 +36,8 @@ namespace SOSCSRPG.Models
         [JsonIgnore]
         public string ImageName { get; }
 
+        public DialogueNode DialogueNode { get; set; }
+
         /// <summary>
         /// Gets the list of quests available at the location.
         /// </summary>
@@ -90,5 +92,7 @@ namespace SOSCSRPG.Models
                 MonstersHere.Add(new MonsterEncounter(monsterID, chanceOfEncountering));
             }
         }
+
+
     }
 }

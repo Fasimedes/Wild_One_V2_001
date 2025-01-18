@@ -65,9 +65,36 @@ namespace SOSCSRPG.Services.Factories
                 AddMonsters(location, node.SelectNodes("./Monsters/Monster"));
                 AddQuests(location, node.SelectNodes("./Quests/Quest"));
                 AddTrader(location, node.SelectSingleNode("./Trader"));
+                AddDialogueNode(location, node.SelectSingleNode("./DialogueNode"));
 
                 world.AddLocation(location);
             }
+        }
+
+        /// <summary>
+        /// Adds a dialogue node to the specified location from the XML node.
+        /// </summary>
+        /// <param name="location">The location to add the dialogue node to.</param>
+        /// <param name="dialogueNode">The XML node containing dialogue node data.</param>
+        private static void AddDialogueNode(Location location, XmlNode dialogueNode)
+        {
+            //if (dialogueNode == null)
+            //{
+            //    return;
+            //}
+
+            DialogueNode node = new DialogueNode(dialogueNode.InnerText);
+
+            //dialogueNode.AttributeAsString("Text"
+            //node.Text = dialogueNode.InnerText;
+
+            //foreach (XmlNode choiceNode in dialogueNode.SelectNodes("./Choices/Choice"))
+            //{
+            //    DialogueNode choice = new DialogueNode(choiceNode.AttributeAsString("Text"));
+            //    node.AddChoice(choice);
+            //}
+
+            location.DialogueNode = node;
         }
 
         /// <summary>

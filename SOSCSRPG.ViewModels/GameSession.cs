@@ -6,6 +6,9 @@ using SOSCSRPG.Services;
 using Newtonsoft.Json;
 using SOSCSRPG.Core;
 using System.Collections.ObjectModel;
+using MathNet.Numerics;
+using System.Runtime.InteropServices;
+using System.Security.Claims;
 namespace SOSCSRPG.ViewModels
 {
     /// <summary>
@@ -23,6 +26,120 @@ namespace SOSCSRPG.ViewModels
         private Location _currentLocation;
         private Battle _currentBattle;
         private Monster _currentMonster;
+
+
+        private DialogueNode _currentDialogueNode;
+        public DialogueNode CurrentDialogueNode
+        {
+            get => _currentDialogueNode;
+            set
+            {
+                _currentDialogueNode = value;
+                //OnPropertyChanged(nameof(CurrentDialogueNode));
+                UpdateDialogueOptions();
+            }
+        }
+        // private DialogueNode _nextDialogueNode;
+
+        private string _dialogueOption1;
+        public string DialogueOption1
+        {
+            get => _dialogueOption1;
+            set
+            {
+                _dialogueOption1 = value;
+                //OnPropertyChanged(nameof(DialogueOption1));
+            }
+        }
+
+        private string _dialogueOption2;
+        public string DialogueOption2
+        {
+            get => _dialogueOption2;
+            set
+            {
+                _dialogueOption2 = value;
+                //OnPropertyChanged(nameof(DialogueOption2));
+            }
+        }
+
+        private string _dialogueOutput;
+
+        public string DialogueOutput
+        {
+            get => _dialogueOutput;
+            set
+            {
+                _dialogueOutput = value;
+                // OnPropertyChanged(nameof(DialogueOutput));
+            }
+        }
+
+        //protected virtual void OnPropertyChanged(string propertyName)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        private void UpdateDialogueOptions()
+        {
+            if (CurrentDialogueNode != null && CurrentDialogueNode.Choices.Count > 0)
+            {
+                DialogueOption1 = CurrentDialogueNode.Choices.Count > 0 ? CurrentDialogueNode.Choices[0].Text : string.Empty;
+                DialogueOption2 = CurrentDialogueNode.Choices.Count > 1 ? CurrentDialogueNode.Choices[1].Text : string.Empty;
+            }
+            else
+            {
+                DialogueOption1 = string.Empty;
+                DialogueOption2 = string.Empty;
+            }
+        }
+
+        public DialogueNode RootDialogueNode { get; private set; }
+
+
+
+        private void InitializeDialogue()
+        {
+            //_nextDialogueNode = new DialogueNode("End");
+            //_nextDialogueNode.Choices.Add(new Choices("End", "End", "End"));
+
+            //_currentDialogueNode = new DialogueNode("Start");
+            //_currentDialogueNode.AddChoice(_nextDialogueNode);
+            ////_currentDialogueNode.Choices.Add(new Choices("Start", "Start", "Start"));
+            ////_currentDialogueNode.Choices.Add(new Choices("End", "End", "End"));
+            ////_currentDialogueNode.OnChosen += OnDialogChosen;
+
+
+            // Create dialogue nodes
+            DialogueNode rootNode = new DialogueNode("Welcome, traveler! What brings you here?");
+            DialogueNode choice1 = new DialogueNode("I'm here to seek adventure.");
+            DialogueNode choice2 = new DialogueNode("I'm just passing through.");
+            DialogueNode choice3 = new DialogueNode("Who are you?");
+
+            // Add choices to the root node
+            rootNode.AddChoice(choice1);
+            rootNode.AddChoice(choice2);
+            rootNode.AddChoice(choice3);
+
+            // Add further dialogue options
+            DialogueNode choice1_1 = new DialogueNode("Great! There are many quests to undertake.");
+            DialogueNode choice1_2 = new DialogueNode("Be careful, the road ahead is dangerous.");
+            choice1.AddChoice(choice1_1);
+            choice1.AddChoice(choice1_2);
+
+            DialogueNode choice2_1 = new DialogueNode("Safe travels, stranger.");
+            choice2.AddChoice(choice2_1);
+
+            DialogueNode choice3_1 = new DialogueNode("I am the guardian of these lands.");
+            choice3.AddChoice(choice3_1);
+
+            // Set the root dialogue node
+            RootDialogueNode = rootNode;
+
+            //DialogueOutput = rootNode.Text;
+        }
+
+
 
         /// <summary>
         /// Event that is raised when a property value changes.
@@ -76,6 +193,14 @@ namespace SOSCSRPG.ViewModels
                 GivePlayerQuestsAtLocation();
                 CurrentMonster = MonsterFactory.GetMonsterFromLocation(CurrentLocation);
                 CurrentTrader = CurrentLocation.TraderHere;
+
+                // Update the current dialogue node based on the location
+                CurrentDialogueNode = CurrentLocation.DialogueNode;
+
+                // Update the dialogue output to reflect the current location's dialogue
+                DialogueOutput = CurrentDialogueNode?.Text ?? string.Empty;
+
+
             }
         }
 
@@ -108,6 +233,11 @@ namespace SOSCSRPG.ViewModels
         /// </summary>
         [JsonIgnore]
         public Trader CurrentTrader { get; private set; }
+
+        /// <summary>
+        /// Dialog node for the current dialogue.
+        /// </summary>
+        //public DialogueNode CurrentDialogueNode { get; set; }
 
         /// <summary>
         /// Gets the collection of game messages.
@@ -190,6 +320,9 @@ namespace SOSCSRPG.ViewModels
             CurrentWorld = WorldFactory.CreateWorld();
             CurrentPlayer = player;
             CurrentLocation = CurrentWorld.LocationAt(xCoordinate, yCoordinate);
+
+            // Initialize dialogue
+            InitializeDialogue();
 
             // Setup popup window properties
             PlayerDetails = new PopupDetails
@@ -297,6 +430,8 @@ namespace SOSCSRPG.ViewModels
         {
             GameDetails = GameDetailsService.ReadGameDetails();
         }
+
+
 
         /// <summary>
         /// Handles the game message raised event.
@@ -475,9 +610,22 @@ namespace SOSCSRPG.ViewModels
             _messageBroker.RaiseMessage($"You are now level {CurrentPlayer.Level}!");
         }
 
+
+
+        //private void OnDialogChosen(object sender, System.EventArgs e)
+        //{
+        //    _messageBroker.RaiseMessage("");
+        //    _messageBroker.RaiseMessage("You see a trader in front of you. He seems bored and begrudingly asks you");
+        //   // _messageBroker.RaiseMessage("You have been killed.");
+        //    //CurrentLocation = CurrentWorld.LocationAt(0, -1);
+        //    CurrentPlayer.CompletelyHeal();
+        //}
+
+
         /// <summary>
         /// Disposes of the game session, unsubscribing from events.
         /// </summary>
+        /// 
         public void Dispose()
         {
             _currentBattle.Dispose();

@@ -35,6 +35,7 @@ namespace SOSCSRPG.Models.Shared
 
             if (attribute == null)
             {
+               // Console.WriteLine($"Missing attribute '{attributeName}' in node: {node.OuterXml}");
                 throw new ArgumentException($"The attribute '{attributeName}' does not exist");
             }
 

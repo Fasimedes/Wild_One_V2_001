@@ -53,6 +53,61 @@ namespace WPFUI
             }
         }
 
+        public void DisplayCurrentDialogue(DialogueNode currentNode)
+        {
+            // Display the current dialogue text
+            _gameSession.GameMessages.Add(currentNode.Text);
+
+            if (currentNode.Choices.Count > 0)
+            {
+                // Display the choices
+                for (int i = 0; i < currentNode.Choices.Count; i++)
+                {
+                    _gameSession.GameMessages.Add($"{i + 1}. {currentNode.Choices[i].Text}");
+                }
+
+                // Create a TextBox for user input
+                TextBox inputTextBox = new TextBox();
+                inputTextBox.KeyDown += (sender, e) =>
+                {
+                    if (e.Key == Key.Enter)
+                    {
+                        // Validate the input
+                        if (int.TryParse(inputTextBox.Text, out int choice) && choice > 0 && choice <= currentNode.Choices.Count)
+                        {
+                            // Display the next dialogue node based on the user's choice
+                            DisplayCurrentDialogue(currentNode.Choices[choice - 1]);
+                        }
+                        else
+                        {
+                            // Display an error message for invalid input
+                            _gameSession.GameMessages.Add("Invalid choice. Please enter a valid number.");
+                        }
+                    }
+                };
+
+                // Add the TextBox to the UI (assuming you have a method to add it to the UI)
+                //AddInputTextBoxToUI(inputTextBox);
+            }
+        }
+
+        private void OnClickDialogOption_1(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentDialogueNode != null && _gameSession.CurrentDialogueNode.Choices.Count > 0)
+            {
+                _gameSession.CurrentDialogueNode = _gameSession.CurrentDialogueNode.Choices[0];
+            }
+        }
+
+        private void OnClickDialogOption_2(object sender, RoutedEventArgs e)
+        {
+            if (_gameSession.CurrentDialogueNode != null && _gameSession.CurrentDialogueNode.Choices.Count > 1)
+            {
+                _gameSession.CurrentDialogueNode = _gameSession.CurrentDialogueNode.Choices[1];
+            }
+        }
+
+
         // Event handler for moving north
         private void OnClick_MoveNorth(object sender, RoutedEventArgs e)
         {
@@ -109,6 +164,26 @@ namespace WPFUI
             Recipe recipe = ((FrameworkElement)sender).DataContext as Recipe;
             _gameSession.CraftItemUsing(recipe);
         }
+
+
+        /// <summary>
+        /// Event handler for handling the dialog options.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //private void OnClickDialogOption_1(object sender, RoutedEventArgs e)
+        //{
+        //   // _gameSession.GameMessages.Add("You nod to the trader");
+
+        //    DisplayCurrentDialogue(_gameSession.RootDialogueNode);
+        //}
+        //private void OnClickDialogOption_2(object sender, RoutedEventArgs e)
+        //{
+        //    //_gameSession.GameMessages.Add("You tell trader to fuck off");
+        //    DisplayCurrentDialogue(_gameSession.RootDialogueNode);
+
+        //}
+
 
         // Initialize user input actions for keyboard shortcuts
         private void InitializeUserInputActions()
@@ -290,5 +365,12 @@ namespace WPFUI
             _dragStart = null;
             e.Handled = true;
         }
+        //private void AddInputTextBoxToUI(TextBox inputTextBox)
+        //{
+        //    // Assuming you have a panel or container to add the TextBox to
+        //    InputPanel.Children.Clear(); // Clear any previous input boxes
+        //    InputPanel.Children.Add(inputTextBox);
+        //    inputTextBox.Focus(); // Set focus to the input box
+        //}
     }
 }
