@@ -92,7 +92,5 @@ namespace SOSCSRPG.Models
                 MonstersHere.Add(new MonsterEncounter(monsterID, chanceOfEncountering));
             }
         }
-
-
     }
 }

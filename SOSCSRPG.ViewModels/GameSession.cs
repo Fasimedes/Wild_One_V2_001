@@ -75,11 +75,6 @@ namespace SOSCSRPG.ViewModels
             }
         }
 
-        //protected virtual void OnPropertyChanged(string propertyName)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
         private void UpdateDialogueOptions()
         {
             if (CurrentDialogueNode != null && CurrentDialogueNode.Choices.Count > 0)
@@ -93,53 +88,6 @@ namespace SOSCSRPG.ViewModels
                 DialogueOption2 = string.Empty;
             }
         }
-
-        public DialogueNode RootDialogueNode { get; private set; }
-
-
-
-        private void InitializeDialogue()
-        {
-            //_nextDialogueNode = new DialogueNode("End");
-            //_nextDialogueNode.Choices.Add(new Choices("End", "End", "End"));
-
-            //_currentDialogueNode = new DialogueNode("Start");
-            //_currentDialogueNode.AddChoice(_nextDialogueNode);
-            ////_currentDialogueNode.Choices.Add(new Choices("Start", "Start", "Start"));
-            ////_currentDialogueNode.Choices.Add(new Choices("End", "End", "End"));
-            ////_currentDialogueNode.OnChosen += OnDialogChosen;
-
-
-            // Create dialogue nodes
-            DialogueNode rootNode = new DialogueNode("Welcome, traveler! What brings you here?");
-            DialogueNode choice1 = new DialogueNode("I'm here to seek adventure.");
-            DialogueNode choice2 = new DialogueNode("I'm just passing through.");
-            DialogueNode choice3 = new DialogueNode("Who are you?");
-
-            // Add choices to the root node
-            rootNode.AddChoice(choice1);
-            rootNode.AddChoice(choice2);
-            rootNode.AddChoice(choice3);
-
-            // Add further dialogue options
-            DialogueNode choice1_1 = new DialogueNode("Great! There are many quests to undertake.");
-            DialogueNode choice1_2 = new DialogueNode("Be careful, the road ahead is dangerous.");
-            choice1.AddChoice(choice1_1);
-            choice1.AddChoice(choice1_2);
-
-            DialogueNode choice2_1 = new DialogueNode("Safe travels, stranger.");
-            choice2.AddChoice(choice2_1);
-
-            DialogueNode choice3_1 = new DialogueNode("I am the guardian of these lands.");
-            choice3.AddChoice(choice3_1);
-
-            // Set the root dialogue node
-            RootDialogueNode = rootNode;
-
-            //DialogueOutput = rootNode.Text;
-        }
-
-
 
         /// <summary>
         /// Event that is raised when a property value changes.
@@ -199,6 +147,8 @@ namespace SOSCSRPG.ViewModels
 
                 // Update the dialogue output to reflect the current location's dialogue
                 DialogueOutput = CurrentDialogueNode?.Text ?? string.Empty;
+
+                _messageBroker.RaiseMessage(DialogueOutput);
 
 
             }
@@ -321,8 +271,6 @@ namespace SOSCSRPG.ViewModels
             CurrentPlayer = player;
             CurrentLocation = CurrentWorld.LocationAt(xCoordinate, yCoordinate);
 
-            // Initialize dialogue
-            InitializeDialogue();
 
             // Setup popup window properties
             PlayerDetails = new PopupDetails

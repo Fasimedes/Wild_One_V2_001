@@ -18,7 +18,7 @@ namespace WPFUI
     public partial class MainWindow : Window
     {
         // File extension for save game files
-        private const string SAVE_GAME_FILE_EXTENSION = "soscsrpg";
+        private const string SAVE_GAME_FILE_EXTENSION = "TheWildOne";
 
         // Dictionary to map user input actions to keys
         private readonly Dictionary<Key, Action> _userInputActions = new Dictionary<Key, Action>();
@@ -163,26 +163,7 @@ namespace WPFUI
         {
             Recipe recipe = ((FrameworkElement)sender).DataContext as Recipe;
             _gameSession.CraftItemUsing(recipe);
-        }
-
-
-        /// <summary>
-        /// Event handler for handling the dialog options.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void OnClickDialogOption_1(object sender, RoutedEventArgs e)
-        //{
-        //   // _gameSession.GameMessages.Add("You nod to the trader");
-
-        //    DisplayCurrentDialogue(_gameSession.RootDialogueNode);
-        //}
-        //private void OnClickDialogOption_2(object sender, RoutedEventArgs e)
-        //{
-        //    //_gameSession.GameMessages.Add("You tell trader to fuck off");
-        //    DisplayCurrentDialogue(_gameSession.RootDialogueNode);
-
-        //}
+        } 
 
 
         // Initialize user input actions for keyboard shortcuts
@@ -365,12 +346,5 @@ namespace WPFUI
             _dragStart = null;
             e.Handled = true;
         }
-        //private void AddInputTextBoxToUI(TextBox inputTextBox)
-        //{
-        //    // Assuming you have a panel or container to add the TextBox to
-        //    InputPanel.Children.Clear(); // Clear any previous input boxes
-        //    InputPanel.Children.Add(inputTextBox);
-        //    inputTextBox.Focus(); // Set focus to the input box
-        //}
     }
 }
