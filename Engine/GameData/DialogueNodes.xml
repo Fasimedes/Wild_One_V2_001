@@ -1,0 +1,111 @@
+﻿<DialogueNodes>
+  <DialogueNode ID="1" Text="Welcome to the Farmer's Field!">
+    <Choices>
+      <Choice Text="What is this place?" NextNodeID="10"/>
+      <Choice Text="Who are you?" NextNodeID="11"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="2" Text="Welcome to Farmer's House!">
+    <Choices>
+      <Choice Text="How are you?" NextNodeID="20"/>
+      <Choice Text="Can I help you with something?" NextNodeID="21"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="3" Text="Welcome Home!">
+    <Choices>
+      <Choice Text="Rest" NextNodeID="30"/>
+      <Choice Text="Check Inventory" NextNodeID="31"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="4" Text="Welcome to the Trading Shop!">
+    <Choices>
+      <Choice Text="What do you have for sale?" NextNodeID="40"/>
+      <Choice Text="Can I sell something?" NextNodeID="41"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="5" Text="Welcome to the Town Square!">
+    <Choices>
+      <Choice Text="What's happening here?" NextNodeID="50"/>
+      <Choice Text="Any news?" NextNodeID="51"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="6" Text="Welcome to the Town Gate!">
+    <Choices>
+      <Choice Text="Can I pass through?" NextNodeID="60"/>
+      <Choice Text="Is it safe outside?" NextNodeID="61"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="7" Text="Welcome to the Spider Forest!">
+    <Choices>
+      <Choice Text="Are there any dangers here?" NextNodeID="70"/>
+      <Choice Text="What can I find here?" NextNodeID="71"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="8" Text="Welcome to the Herbalist's Hut!">
+    <Choices>
+      <Choice Text="Do you have any potions?" NextNodeID="80"/>
+      <Choice Text="Can you teach me about herbs?" NextNodeID="81"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="9" Text="Welcome to the Herbalist's Garden!">
+    <Choices>
+      <Choice Text="What herbs grow here?" NextNodeID="90"/>
+      <Choice Text="Are there any dangers here?" NextNodeID="91"/>
+    </Choices>
+  </DialogueNode>
+
+  <!-- Additional dialogue nodes for choices -->
+  <DialogueNode ID="10" Text="This is a field where we grow corn.">
+    <Choices>
+      <Choice Text="Be careful, there are giant rats here."/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="11" Text="I am the farmer.">
+    <Choices>
+      <Choice Text="I take care of this field."/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="20" Text="I'm doing well, thank you.">
+    <Choices>
+      <Choice Text="Can I help you with something?" NextNodeID="21"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="21" Text="Yes, I need help with my crops.">
+    <Choices>
+      <Choice Text="Sure, what do you need?" NextNodeID="22"/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="22" Text="I need you to get rid of the pests in my field.">
+    <Choices>
+      <Choice Text="I'll take care of it."/>
+    </Choices>
+  </DialogueNode>
+  <DialogueNode ID="30" Text="You rest and regain your strength.">
+  </DialogueNode>
+  <DialogueNode ID="31" Text="You check your inventory.">
+  </DialogueNode>
+  <DialogueNode ID="40" Text="Here are the items I have for sale.">
+  </DialogueNode>
+  <DialogueNode ID="41" Text="What would you like to sell?">
+  </DialogueNode>
+  <DialogueNode ID="50" Text="The town is bustling with activity.">
+  </DialogueNode>
+  <DialogueNode ID="51" Text="There are rumors of a monster in the forest.">
+  </DialogueNode>
+  <DialogueNode ID="60" Text="Yes, but be careful.">
+  </DialogueNode>
+  <DialogueNode ID="61" Text="It's dangerous outside the gate.">
+  </DialogueNode>
+  <DialogueNode ID="70" Text="Yes, there are giant spiders here.">
+  </DialogueNode>
+  <DialogueNode ID="71" Text="You can find rare herbs here.">
+  </DialogueNode>
+  <DialogueNode ID="80" Text="Yes, I have various potions for sale.">
+  </DialogueNode>
+  <DialogueNode ID="81" Text="Sure, I can teach you about herbs.">
+  </DialogueNode>
+  <DialogueNode ID="90" Text="Various medicinal herbs grow here.">
+  </DialogueNode>
+  <DialogueNode ID="91" Text="Yes, there are snakes hiding behind the plants.">
+  </DialogueNode>
+</DialogueNodes>
